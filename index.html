@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>My first three.js app</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="css/foody.css">
+	</head>
+	<body>
+		<div id="loading-screen">
+			<div id="logo">
+				<div id="logo-box">
+					<img id="logo-u" class="logo" src="images/u.png">
+					<img id="logo-e" class="logo" src="images/e.png">
+					<img id="logo-n" class="logo" src="images/n.png">
+					<img id="logo-a" class="logo" src="images/a.png">
+					<img id="logo-k" class="logo" src="images/k.png">
+				</div>		
+			</div>
+			<div id="loading-border">
+				<div id="loading"></div>
+			</div>
+		</div>	
+		<div id="overlay">
+			<div id="top">
+				<div id="top-left">
+					<h1>Timun Mas</h1>
+				</div>
+				<div id="top-right">
+					<div id="knobs"></div>
+					<a onclick="languageChange('0')"><h1 id="headingEnglish" class="active">EN</h1></a>
+					<a onclick="languageChange('1')"><h1 id="headingIndonesia" class="deactivate">ID</h1></a>
+				</div>	
+			</div>
+			<div id="descriptionPanel">
+				<div id="descPanelLeft">
+					<img id="iconFood" src="images/icons/martabak.png" alt"badge-img"></img>
+				</div>
+				<div id="descPanelRight">
+					<a><img src="svg/Close Icon.svg" id="close-icon" alt="Close icon"></a>
+					<div id="content">
+						<h3 id="descTitle">Martabak Manis</h3>
+						<p id="descDesc">The king of indonesian dessert, you will definitely feel sinful after eating it</p>					
+					</div>
+					<div id="actionDesc">
+						<div class="buttonBox">
+							<button id="learnMoreButton" class="actionButton" >
+								<img src="svg/search.svg" id="learn-more-icon" alt="learn-more">
+							</button>	
+							<p id="learnMoreP" >LEARN<br>MORE</p>
+						</div>
+						<div class="buttonBox">
+							<button id="cutleryButton" class="actionButton">
+								<img src="svg/cutlery.svg" id="cutlery-icon" alt="cutlery">
+							</button>	
+							<p id="cutleryP">NEAR<br>ME</p>
+						</div>
+					</div>
+				</div>
+			</div>				
+			<div id="bottom">
+				<div id="bottom-left">
+				
+				</div>
+				<div id="bottom-right">
+					<img src="svg/About.svg" id="about-icon" alt="about icon">
+				</div>
+			</div>	
+		</div>
+		
+		<canvas id="c"></canvas>
+		
+		<script src="js/three.js"></script>
+		<script type="module" src="js/foody-test.js"></script>
+		<script type="text/javascript">		
+			const englishNote = 0;
+			const indonesiaNote = 1;
+			const headingEnglishId = "headingEnglish";
+			const headingIndId = "headingIndonesia";
+			let activeLanguage = englishNote;
+			function languageChange(lang){
+				if(parseInt(lang) != activeLanguage){
+					if(parseInt(lang) == englishNote){
+						activeLanguage = englishNote;
+						setElementActive(document.getElementById(headingEnglishId),document.getElementById(headingIndId));
+					}else if(parseInt(lang) == indonesiaNote){
+						activeLanguage = indonesiaNote;
+						setElementActive(document.getElementById(headingIndId),document.getElementById(headingEnglishId));	
+
+					}
+					setKnobs(activeLanguage);
+				}
+			}
+			
+			function setElementActive(activatedElem,deactivatedElem){
+				activatedElem.classList.add('active');
+				activatedElem.classList.remove('deactivate');
+				deactivatedElem.classList.add('deactivate');
+				deactivatedElem.classList.remove('active');
+			}
+			function setKnobs(direction){
+				var knob = document.getElementById("knobs");
+				if(direction == 0){
+					knob.classList.add('knobsLeft');
+					knob.classList.remove('knobsRight');	
+				}else{
+					knob.classList.add('knobsRight');
+					knob.classList.remove('knobsLeft');				
+				}
+			}
+			
+			<!-- border glob animation -->
+			let searchButton = document.getElementsByClassName('searchButton');
+			setInterval(setBorderRadius,500);
+			function setBorderRadius(){
+				for(let i = 0;i<searchButton.length;i++){
+					searchButton[i].style.setProperty('--br-blobby',getRandomBorderRadiusValue());				
+				}
+			}
+			
+			function getRandomBorderRadiusValue(){
+				return getRandomValue() + "% " + getRandomValue() + "% " + getRandomValue() + "% " + getRandomValue() + "% / " + getRandomValue() + "% " + getRandomValue() + "% " + getRandomValue() + "% ";
+			}			
+			function getRandomValue(){
+				return Math.floor(Math.random() * 50) + 50;
+			}
+			
+			<!-- Action Button Hover Animation -->
+			let hoverInterval;
+			function actionButtonHover(elem){
+				hoverInterval = setInterval(()=>{elem.style.setProperty('--descPanel-blobby',getRandomBorderRadiusValue());},500);
+			}
+			
+			function actionButtonHoverOut(elem){
+				clearInterval(hoverInterval);
+				elem.style.setProperty('--descPanel-blobby','50%');
+			}
+
+		</script>			
+	</body>
+</html>

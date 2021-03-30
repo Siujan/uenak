@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="390" height="400" viewBox="0 0 390 400">
+<defs>
+<style>
+	.cls-1{fill:none;stroke:white;stroke-width:25px;}
+	.fill-about{
+		fill:white
+	}
+</style>
+</defs>
+<title>About_1</title>
+<g id="Layer_2" class="fill-about" data-name="Layer 2">
+<g id="About" >
+<path id="body_i" data-name="body i" d="M182.5,145.5h14a14,14,0,0,1,14,14v122a0,0,0,0,1,0,0h-28a0,0,0,0,1,0,0v-136A0,0,0,0,1,182.5,145.5Z"/>
+<g id="head_i" data-name="head i">
+<path d="M182.3789,173.575l-13.499-.1161a13.5,13.5,0,0,1-13.3829-13.6151l.0086-1a13.5,13.5,0,0,1,13.6151-13.3828l13.4991.1161Z"/>
+</g>
+<rect id="bottom_i" data-name="bottom i" x="155.5" y="281.5" width="82" height="28" rx="14"/>
+<circle id="top_dot" data-name="top dot" cx="196.5" cy="105.5" r="14"/>
+<ellipse id="Stroke_outside" data-name="Stroke outside" class="cls-1" cx="195" cy="200" rx="182.5" ry="187.5"/>
+</g></g></svg>	
