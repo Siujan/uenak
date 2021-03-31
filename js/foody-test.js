@@ -133,12 +133,12 @@ function setupCanvas(){
 function setupSkyBox(){
 	const skyboxLoader = new THREE.CubeTextureLoader();
 	const skyboxTexture = skyboxLoader.load([
-	'images/skybox/px.png',
-	'images/skybox/nx.png',
-	'images/skybox/py.png',
-	'images/skybox/ny.png',
-	'images/skybox/pz.png',
-	'images/skybox/nz.png',
+	'images/skybox_1024/px.png',
+	'images/skybox_1024/nx.png',
+	'images/skybox_1024/py.png',
+	'images/skybox_1024/ny.png',
+	'images/skybox_1024/pz.png',
+	'images/skybox_1024/nz.png',
 	]);
 	scene.background = skyboxTexture;	
 	scene.environment = skyboxTexture;	
