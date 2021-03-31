@@ -105,11 +105,19 @@ function updateLoadingBar(){
 	loadingBar.style.width = percent + "%";
 }	
 	
+	
+let prevTouch = new THREE.Vector2();
 function setupCanvas(){
 	canvas = document.getElementById('c');
 	// Add the event listeners for mousedown, mousemove, and mouseup
 	canvas.addEventListener('mousedown', e => {
 		isClicking = true;
+	});
+
+	canvas.addEventListener('touchstart', e => {
+		isClicking = true;
+		prevTouch.x = - e.touches[0].screenX;
+		prevTouch.y = - e.touches[0].screenY;
 	});
 
 	canvas.addEventListener('mousemove', e => {
@@ -123,11 +131,30 @@ function setupCanvas(){
 		
 	});
 
+	canvas.addEventListener('touchmove', e => {
+		mouse.x = - e.touches[0].screenX;
+		mouse.y = - e.touches[0].screenY;	
+		if (isClicking === true) {
+			var x = prevTouch.x - mouse.x;
+			var y = prevTouch.y - mouse.y;
+			CharRotate(x,y,camera);
+			prevTouch.x = mouse.x;
+			prevTouch.y = mouse.y;
+		}	
+	});
+
 	window.addEventListener('mouseup', e => {
 	  if (isClicking) {
 		isClicking = false;
 	  }
 	});
+	
+	window.addEventListener('touchend', e => {
+	  if (isClicking) {
+		isClicking = false;
+		prevTouch.set(0,0);
+	  }
+	});	
 }
 
 function setupSkyBox(){
