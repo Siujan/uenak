@@ -16,18 +16,18 @@ gltfLoader.setDRACOLoader(dracoLoader);
 let mixers = [];
 let models = [];
 
-// let glbLists = ['./3dObject/Cincau.glb','./3dObject/Es Campur.glb',
-				// './3dObject/Kelapa.glb','./3dObject/Kue Ape 1.glb',
-				// './3dObject/Kue Ape 2.glb','./3dObject/Kue Ape 3.glb',
-				// './3dObject/Kue Mangkok Hijau.glb','./3dObject/Kue Mangkok Kuning.glb',
-				// './3dObject/Kue Mangkok Pink.glb','./3dObject/Martabak Coaster.glb',
-				// './3dObject/Mutiara.glb','./3dObject/Statue of Martabak.glb','./3dObject/Tape.glb'];
-	
 let glbLists = ['./3dObject/Cincau.glb','./3dObject/Es Campur.glb',
 				'./3dObject/Kelapa.glb','./3dObject/Kue Ape 1.glb',
 				'./3dObject/Kue Ape 2.glb','./3dObject/Kue Ape 3.glb',
-				'./3dObject/Martabak Coaster.glb',
+				'./3dObject/Kue Mangkok Hijau.glb','./3dObject/Kue Mangkok Kuning.glb',
+				'./3dObject/Kue Mangkok Pink.glb','./3dObject/Martabak Coaster.glb',
 				'./3dObject/Mutiara.glb','./3dObject/Statue of Martabak.glb','./3dObject/Tape.glb'];
+	
+// let glbLists = ['./3dObject/Cincau.glb','./3dObject/Es Campur.glb',
+				// './3dObject/Kelapa.glb','./3dObject/Kue Ape 1.glb',
+				// './3dObject/Kue Ape 2.glb','./3dObject/Kue Ape 3.glb',
+				// './3dObject/Martabak Coaster.glb',
+				// './3dObject/Mutiara.glb','./3dObject/Statue of Martabak.glb','./3dObject/Tape.glb'];
 	
 const clock = new THREE.Clock();
 let backgroundNameStr = "background_name";
