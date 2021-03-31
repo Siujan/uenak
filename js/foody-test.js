@@ -286,36 +286,6 @@ function animate(){
 
 let logoList = ['logo-u','logo-e','logo-n','logo-a','logo-k'];
 
-function main(){
-	scene = new THREE.Scene();
-	setupCanvas();
-	renderer = setupRenderer(renderer,canvas,paramsTone);
-	camera = setupCamera(camera,fov,aspect,near,far,camPost);
-	setupLight();
-	setupSkyBox();
-	Promise.all(loadModelsArray()).then(() => {
-		for(let i = 0;i<models.length;i++){
-			let model = models[i].scene || models[i].scenes[0];	
-			let clips = models[i].animations || [];
-			model.scale.set(1,1,1);
-			model.position.set(0,0,0);
-			scene.add( model );				
-			if(clips.length != 0){
-				mixers.push(new THREE.AnimationMixer(model));
-				let action = mixers[mixers.length-1].clipAction(clips[0]);
-				action.play();				
-			}				
-		}				
-		loadingScreen.style.animation = "fadeOutBackground .5s forwards";
-		document.getElementById("loading-border").style.animation = "fadeOutOp .5s .5s forwards";
-		for(let i =0;i<logoList.length;i++){
-			document.getElementById(logoList[i]).style.animation = "logoClose .5s ." + (4 + i) +"s forwards";
-		}
-		render();	
-		setTimeout(function(){ loadingScreen.style.display = "none"; animate();}, 1500);			
-	});	
-}
-
 function panelShowAnimation(){
 	descriptionPanel.style.display = "flex";
 	descriptionPanel.classList.remove("descPanScaleDown");
@@ -349,6 +319,36 @@ document.getElementById('close-icon').onclick = function(){
 	isPlay = true;
 	requestAnimationFrame(animate);
 };
+
+function main(){
+	scene = new THREE.Scene();
+	setupCanvas();
+	renderer = setupRenderer(renderer,canvas,paramsTone);
+	camera = setupCamera(camera,fov,aspect,near,far,camPost);
+	setupLight();
+	setupSkyBox();
+	Promise.all(loadModelsArray()).then(() => {
+		for(let i = 0;i<models.length;i++){
+			let model = models[i].scene || models[i].scenes[0];	
+			let clips = models[i].animations || [];
+			model.scale.set(1,1,1);
+			model.position.set(0,0,0);
+			scene.add( model );				
+			if(clips.length != 0){
+				mixers.push(new THREE.AnimationMixer(model));
+				let action = mixers[mixers.length-1].clipAction(clips[0]);
+				action.play();				
+			}				
+		}				
+		loadingScreen.style.animation = "fadeOutBackground .5s forwards";
+		document.getElementById("loading-border").style.animation = "fadeOutOp .5s .5s forwards";
+		for(let i =0;i<logoList.length;i++){
+			document.getElementById(logoList[i]).style.animation = "logoClose .5s ." + (4 + i) +"s forwards";
+		}
+		render();	
+		setTimeout(function(){ loadingScreen.style.display = "none"; animate();}, 1500);			
+	});	
+}
 
 // javascript:(function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='//mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 main();

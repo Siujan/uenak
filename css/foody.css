@@ -136,7 +136,7 @@ html, body{
 	pointer-events: auto; 	
 }
 
-#bottom #about-icon{
+.bottom-icon{
 	width:50px;
 }
 

@@ -62,10 +62,10 @@
 			</div>				
 			<div id="bottom">
 				<div id="bottom-left">
-				
+					<img src="svg/mute.svg" onclick="musicToggle()" id="music-icon" class="bottom-icon" alt="sound icon">
 				</div>
 				<div id="bottom-right">
-					<img src="svg/About.svg" id="about-icon" alt="about icon">
+					<img src="svg/About.svg" id="about-icon" class="bottom-icon" alt="about icon">
 				</div>
 			</div>	
 		</div>
@@ -80,6 +80,12 @@
 			const headingEnglishId = "headingEnglish";
 			const headingIndId = "headingIndonesia";
 			let activeLanguage = englishNote;
+			let hoverInterval;
+			let musicToggled = false;
+			let music = new Audio('music/themepark.mp3');
+			music.volume = 0.05;
+			music.loop = true;
+			
 			function languageChange(lang){
 				if(parseInt(lang) != activeLanguage){
 					if(parseInt(lang) == englishNote){
@@ -128,7 +134,6 @@
 			}
 			
 			<!-- Action Button Hover Animation -->
-			let hoverInterval;
 			function actionButtonHover(elem){
 				hoverInterval = setInterval(()=>{elem.style.setProperty('--descPanel-blobby',getRandomBorderRadiusValue());},500);
 			}
@@ -137,7 +142,23 @@
 				clearInterval(hoverInterval);
 				elem.style.setProperty('--descPanel-blobby','50%');
 			}
-
+			
+			let musicIcon = document.getElementById("music-icon");
+			let muteSvg = "svg/mute.svg";
+			let musicOnSvg = "svg/sound.svg";
+			function musicToggle(){
+				if(musicToggled){
+					musicIcon.src = muteSvg
+					music.pause();
+					musicToggled = false;
+				}else{
+					musicIcon.src = musicOnSvg;
+					music.play();
+					musicToggled = true;
+				}
+				
+			}
+	
 		</script>			
 	</body>
 </html>
