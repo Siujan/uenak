@@ -38,11 +38,13 @@ let loadingScreen = document.getElementById("loading-screen");
 
 let objectDescriptionEN = ["Martabak Manis is the king of indonesia dessert, it is sinfully good",
 "a very springy and chewy cake.","String hopper dish made of rice flour","Grandma hair but made of sugar",
-"Javanese snacek made of Cassava","Amazing cold dessert in indonesia since its hot here almost all year."]
+"Javanese sncek made of Cassava","Amazing cold dessert in indonesia since its hot here almost all year.",
+"Kue Mangkok Uhuy"]
 
 let objectDescriptionID = ["Martabak Manis adalah raja Indonesia pencuci mulut, itu adalah sinfully baik",
 "kue yang sangat kenyal dan kenyal","Piring hopper terbuat dari tepung beras", "Rambut nenek tapi terbuat dari gula",
-"Snacek Jawa terbuat dari Singkong", "Makanan penutup dingin yang luar biasa di Indonesia karena di sini panas hampir sepanjang tahun."]
+"Sncek Jawa terbuat dari Singkong", "Makanan penutup dingin yang luar biasa di Indonesia karena di sini panas hampir sepanjang tahun.",
+"Kue Mangkok Uhuy"]
 
 function objectPosition(pos,description,title,img) {
 	this.position = pos;
@@ -56,10 +58,11 @@ function objectPosition(pos,description,title,img) {
 let objects = [
 	new objectPosition(new THREE.Vector3(0,15,-50),0,"Martabak Manis","images/icons/martabak.png"), // martabak
 	new objectPosition(new THREE.Vector3(30,8,-50),1,"Bika Ambon","images/icons/Bika ambon icon.png"), // bika ambon
-	new objectPosition(new THREE.Vector3(10,2,-2),2,"Putu Mayang","images/icons/martabak.png"), // putu mayang
-	new objectPosition(new THREE.Vector3(10,3,10),3,"Rambut Nenek","images/icons/martabak.png"), // Rambut Nenek
-	new objectPosition(new THREE.Vector3(5,2,8),4,"Kue Gethuk","images/icons/martabak.png"), // Kue Getuk
-	new objectPosition(new THREE.Vector3(-10,7,10),5,"Es Campur","images/icons/martabak.png") // Es Campur
+	new objectPosition(new THREE.Vector3(10,2,-2),2,"Putu Mayang","images/icons/putu mayang.png"), // putu mayang
+	new objectPosition(new THREE.Vector3(10,3,10),3,"Rambut Nenek","images/icons/rambut nenek.png"), // Rambut Nenek
+	new objectPosition(new THREE.Vector3(5,2,8),4,"Kue Gethuk","images/icons/kue gethuk.png"), // Kue Getuk
+	new objectPosition(new THREE.Vector3(-10,7,10),5,"Es Campur","images/icons/es campur.png"), // Es Campur
+	new objectPosition(new THREE.Vector3(-10,3,-8),6,"Kue Mangkok","images/icons/kue mangkok.png") // Kue Mangkok
 ];
 
 let object = new objectPosition(new THREE.Vector3(50,5,0));
@@ -174,11 +177,14 @@ function setupSkyBox(){
 function setupLight(){
 	// ff849c pink
 	// ffce9f cream
-	const skyColor = 0xFFFFFF; 
-	const groundColor = 0xffce9f;
+	const skyColor = 0xffffff; 
+	const groundColor = 0xffffff;
 	const intensity = 1;
 	const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
-	scene.add( light );	
+	// scene.add( light );	
+	// const ambLight = new THREE.AmbientLight( 0xffffff , 0.3); // soft white light
+	// scene.add( ambLight );	
+
 }
 
 function resizeRendererToDisplaySize(renderer) {
@@ -320,6 +326,17 @@ document.getElementById('close-icon').onclick = function(){
 	requestAnimationFrame(animate);
 };
 
+function convertMaterial(model){
+	if(model.children.length > 0){
+		console.log("Length more than 1");
+		model.children.forEach(element => console.log(element.material))
+	}else{
+		console.log("Length 1");
+		console.log(model.material);
+	}
+	
+}
+
 function main(){
 	scene = new THREE.Scene();
 	setupCanvas();
@@ -333,6 +350,7 @@ function main(){
 			let clips = models[i].animations || [];
 			model.scale.set(1,1,1);
 			model.position.set(0,0,0);
+			convertMaterial(model.children[0]);
 			scene.add( model );				
 			if(clips.length != 0){
 				mixers.push(new THREE.AnimationMixer(model));
