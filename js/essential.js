@@ -1,7 +1,8 @@
 export function setupRenderer(renderer,canvas,paramsTone){
 	//anti alias make the object less jagged or squary feel
-	renderer = new THREE.WebGLRenderer({antialias: true,canvas});
+	renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true,canvas});
 	renderer.setPixelRatio( window.devicePixelRatio );
+	// document.getElementById("canvasBlend").appendChild( renderer.domElement );	
 	document.body.appendChild( renderer.domElement );	
 	return renderer;
 }

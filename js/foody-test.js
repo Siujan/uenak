@@ -180,11 +180,10 @@ function setupLight(){
 	const skyColor = 0xffffff; 
 	const groundColor = 0xffffff;
 	const intensity = 1;
-	const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
+	// const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
 	// scene.add( light );	
-	// const ambLight = new THREE.AmbientLight( 0xffffff , 0.3); // soft white light
-	// scene.add( ambLight );	
-
+	const ambLight = new THREE.AmbientLight( skyColor , intensity); // soft white light
+	scene.add( ambLight );	
 }
 
 function resizeRendererToDisplaySize(renderer) {
@@ -212,6 +211,7 @@ let descPanTitle = document.getElementById("descTitle");
 let descPanDesc = document.getElementById("descDesc");
 let imgPanel = document.getElementById("iconFood");
 function objectOnClick(object){
+	// gradientMap();
 	imgPanel.src = object.img;
 	descPanTitle.innerHTML = object.title;
 	descPanDesc.innerHTML = (activeLanguage == englishNote) ? objectDescriptionEN[object.description] : objectDescriptionID[object.description]; 
@@ -268,6 +268,22 @@ function objectsCameraVision(){
 	}
 }
 
+
+// let gradFilterImg = document.getElementById("gradientMapImg");
+// let gradFilterCanvas = document.getElementById("gradientMapFilter").getContext("2d");
+// function gradMapFilter(img){
+	// console.log(img);
+	// return img;
+// }
+
+function gradientMap(){
+	// let img = new Image;
+	// img.onload = () => { gradFilterCanvas.drawImage(img,0,0); };
+	// img.src = canvas.toDataURL();
+	gradFilterImg.src = canvas.toDataURL();
+	gradFilterCanvas.drawImage(gradFilterImg,0,0);
+}
+
 function render(){
     if (resizeRendererToDisplaySize(renderer)) {
 		const canvas = renderer.domElement;
@@ -277,6 +293,7 @@ function render(){
 	
 	objectsCameraVision();
 	renderer.render(scene,camera);
+	
 }
 
 function animate(){
@@ -326,17 +343,6 @@ document.getElementById('close-icon').onclick = function(){
 	requestAnimationFrame(animate);
 };
 
-function convertMaterial(model){
-	if(model.children.length > 0){
-		console.log("Length more than 1");
-		model.children.forEach(element => console.log(element.material))
-	}else{
-		console.log("Length 1");
-		console.log(model.material);
-	}
-	
-}
-
 function main(){
 	scene = new THREE.Scene();
 	setupCanvas();
@@ -350,7 +356,6 @@ function main(){
 			let clips = models[i].animations || [];
 			model.scale.set(1,1,1);
 			model.position.set(0,0,0);
-			convertMaterial(model.children[0]);
 			scene.add( model );				
 			if(clips.length != 0){
 				mixers.push(new THREE.AnimationMixer(model));
