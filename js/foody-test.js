@@ -1,10 +1,14 @@
 import { Euler } from '../three/build/three.module.js';
 import { GLTFLoader } from '../three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from '../three/examples/jsm/loaders/DRACOLoader.js';
+import { EffectComposer } from '../three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from '../three/examples/jsm/postprocessing/RenderPass.js';
+import { ShaderPass } from '../three/examples/jsm/postprocessing/ShaderPass.js';
+import { GradientMapShader } from '../three/examples/jsm/shaders/GradientMapShader.js';
 import { Character } from './character.js';
 import { setupRenderer, setupCamera } from './essential.js';
 
-let scene,camera,renderer,canvas
+let scene,camera,renderer,canvas,composer;
 let cameraFrustum = new THREE.Frustum();
 const mouse = new THREE.Vector2();
 let isPlay = true;
@@ -288,12 +292,13 @@ function render(){
     if (resizeRendererToDisplaySize(renderer)) {
 		const canvas = renderer.domElement;
 		camera.aspect = canvas.clientWidth / canvas.clientHeight;
+		composer.setSize(canvas.clientWidth,canvas.clientHeight);
 		camera.updateProjectionMatrix();
     }	
 	
 	objectsCameraVision();
-	renderer.render(scene,camera);
-	
+	// renderer.render(scene,camera);
+	composer.render();
 }
 
 function animate(){
@@ -348,6 +353,12 @@ function main(){
 	setupCanvas();
 	renderer = setupRenderer(renderer,canvas,paramsTone);
 	camera = setupCamera(camera,fov,aspect,near,far,camPost);
+	
+	composer = new EffectComposer(renderer);
+	composer.setSize(canvas.clientWidth,canvas.clientHeight);
+	composer.addPass(new RenderPass(scene,camera));
+	composer.addPass(new ShaderPass( GradientMapShader ));
+	
 	setupLight();
 	setupSkyBox();
 	Promise.all(loadModelsArray()).then(() => {
