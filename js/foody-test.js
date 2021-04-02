@@ -272,22 +272,6 @@ function objectsCameraVision(){
 	}
 }
 
-
-// let gradFilterImg = document.getElementById("gradientMapImg");
-// let gradFilterCanvas = document.getElementById("gradientMapFilter").getContext("2d");
-// function gradMapFilter(img){
-	// console.log(img);
-	// return img;
-// }
-
-function gradientMap(){
-	// let img = new Image;
-	// img.onload = () => { gradFilterCanvas.drawImage(img,0,0); };
-	// img.src = canvas.toDataURL();
-	gradFilterImg.src = canvas.toDataURL();
-	gradFilterCanvas.drawImage(gradFilterImg,0,0);
-}
-
 function render(){
     if (resizeRendererToDisplaySize(renderer)) {
 		const canvas = renderer.domElement;
@@ -344,6 +328,7 @@ function disableSearchButtonHover(){
 // closing panel
 document.getElementById('close-icon').onclick = function(){
 	panelGoneAnimation();
+	imgPanel.src = "";
 	isPlay = true;
 	requestAnimationFrame(animate);
 };
