@@ -337,6 +337,16 @@ document.getElementById('close-icon').onclick = function(){
 	requestAnimationFrame(animate);
 };
 
+
+document.getElementById("startButton").addEventListener("click",closeCurtain);
+function closeCurtain(){
+	for(let i =0;i<logoList.length;i++){
+		document.getElementById(logoList[i]).style.animation = "logoClose .5s ." + (4 + i) +"s forwards";
+	}	
+	setTimeout(function(){ document.getElementById("startButton").style.animation = "logoClose .5s forwards";}, 1000);
+	setTimeout(function(){ loadingScreen.style.display = "none"; musicToggle();}, 1500);		
+}
+
 function main(){
 	scene = new THREE.Scene();
 	setupCanvas();
@@ -348,7 +358,7 @@ function main(){
 	composer.addPass(new RenderPass(scene,camera));
 	// composer.addPass(new ShaderPass(BrightnessContrastShader));
 	composer.addPass(new ShaderPass(GradientMapShader));
-	composer.addPass(new ShaderPass(GammaCorrectionShader));	
+	// composer.addPass(new ShaderPass(GammaCorrectionShader));	
 	
 	setupLight();
 	setupSkyBox();
@@ -397,11 +407,11 @@ function main(){
 		}				
 		loadingScreen.style.animation = "fadeOutBackground .5s forwards";
 		document.getElementById("loading-border").style.animation = "fadeOutOp .5s .5s forwards";
-		for(let i =0;i<logoList.length;i++){
-			document.getElementById(logoList[i]).style.animation = "logoClose .5s ." + (4 + i) +"s forwards";
-		}
+		setTimeout(()=>{document.getElementById("loading-border").style.display = "none";document.getElementById("startButton").style.display = "block"},1500);
+
 		render();	
-		setTimeout(function(){ loadingScreen.style.display = "none"; animate();}, 1500);			
+		animate();
+		
 	});	
 }
 

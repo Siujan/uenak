@@ -5,6 +5,7 @@
 :root {
 	--br-blobby: 50%;
 	--descPanel-blobby: 50%;
+	--start-blobby: 10px;
 }
 
 html, body{
@@ -401,13 +402,13 @@ html, body{
 .searchButton{
 	position:absolute;
 	width:30px;
-	height:30px;
-	border-radius:var(--br-blobby);
+	height:30px;	
 	border:0px;
 	padding:8px;
 	opacity:0.8;
 	outline:none;
 	z-index:2;
+	border-radius:var(--br-blobby);
 	transition: border-radius 0.5s linear;
 }
 
@@ -534,7 +535,6 @@ html, body{
 	margin:0px;
 	color:white;
 	transform: rotate(29deg);
-	<!-- animation: textDiagonal 10s infinite linear; -->
 }
 
 .fadein{
@@ -663,3 +663,22 @@ html, body{
 	}
 }
 
+
+#startButton{
+	display:none;
+	background-color:#ff849c;
+	color:#ffffff;
+	width:132px;
+	height:42px;
+	outline:none;
+	font-size:1rem;
+	border-radius:20px;
+	border:none;
+	align-self:center;
+	animation:logoOpening .5s;
+	transition:border-radius .5s;
+}
+
+#startButton:hover{
+	border-radius:50%;
+}
