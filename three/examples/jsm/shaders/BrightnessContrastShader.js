@@ -10,8 +10,8 @@ var BrightnessContrastShader = {
 	uniforms: {
 
 		'tDiffuse': { value: null },
-		'brightness': { value: 0 },
-		'contrast': { value: 0 }
+		'brightness': { value: -0.2 },
+		'contrast': { value: 0.446 }
 
 	},
 
@@ -40,7 +40,7 @@ var BrightnessContrastShader = {
 		'void main() {',
 
 		'	gl_FragColor = texture2D( tDiffuse, vUv );',
-
+		
 		'	gl_FragColor.rgb += brightness;',
 
 		'	if (contrast > 0.0) {',

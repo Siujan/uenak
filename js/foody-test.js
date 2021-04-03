@@ -5,6 +5,8 @@ import { EffectComposer } from '../three/examples/jsm/postprocessing/EffectCompo
 import { RenderPass } from '../three/examples/jsm/postprocessing/RenderPass.js';
 import { ShaderPass } from '../three/examples/jsm/postprocessing/ShaderPass.js';
 import { GradientMapShader } from '../three/examples/jsm/shaders/GradientMapShader.js';
+import { BrightnessContrastShader } from '../three/examples/jsm/shaders/BrightnessContrastShader.js';
+import { GammaCorrectionShader } from '../three/examples/jsm/shaders/GammaCorrectionShader.js';
 import { Character } from './character.js';
 import { setupRenderer, setupCamera } from './essential.js';
 
@@ -41,12 +43,12 @@ let loadingScreen = document.getElementById("loading-screen");
 // let backgroundText = document.getElementById("background-text");
 
 let objectDescriptionEN = ["Martabak Manis is the king of indonesia dessert, it is sinfully good",
-"a very springy and chewy cake.","String hopper dish made of rice flour","Grandma hair but made of sugar",
+"Spongy chewy golden cake.","String hopper dish made of rice flour","Grandma hair but made of sugar",
 "Javanese sncek made of Cassava","Amazing cold dessert in indonesia since its hot here almost all year.",
 "Kue Mangkok Uhuy"]
 
-let objectDescriptionID = ["Martabak Manis adalah raja Indonesia pencuci mulut, itu adalah sinfully baik",
-"kue yang sangat kenyal dan kenyal","Piring hopper terbuat dari tepung beras", "Rambut nenek tapi terbuat dari gula",
+let objectDescriptionID = ["Martabak Manis adalah raja street food indonesia, dosa yang sangat nikmat",
+"Bika Ambon tapi bukan dari ambon","Piring hopper terbuat dari tepung beras", "Rambut nenek tapi terbuat dari gula",
 "Sncek Jawa terbuat dari Singkong", "Makanan penutup dingin yang luar biasa di Indonesia karena di sini panas hampir sepanjang tahun.",
 "Kue Mangkok Uhuy"]
 
@@ -174,6 +176,8 @@ function setupSkyBox(){
 	'images/skybox_1024/pz.png',
 	'images/skybox_1024/nz.png',
 	]);
+	skyboxTexture.format = THREE.RGBFormat;
+	skyboxTexture.encoding = THREE.sRGBEncoding;	
 	scene.background = skyboxTexture;	
 	scene.environment = skyboxTexture;	
 }
@@ -182,12 +186,12 @@ function setupLight(){
 	// ff849c pink
 	// ffce9f cream
 	const skyColor = 0xffffff; 
-	const groundColor = 0xffffff;
+	const groundColor = 0xffce9f;
 	const intensity = 1;
 	// const light = new THREE.HemisphereLight(skyColor, groundColor, intensity);
 	// scene.add( light );	
 	const ambLight = new THREE.AmbientLight( skyColor , intensity); // soft white light
-	scene.add( ambLight );	
+	scene.add( ambLight );
 }
 
 function resizeRendererToDisplaySize(renderer) {
@@ -342,7 +346,9 @@ function main(){
 	composer = new EffectComposer(renderer);
 	composer.setSize(canvas.clientWidth,canvas.clientHeight);
 	composer.addPass(new RenderPass(scene,camera));
-	composer.addPass(new ShaderPass( GradientMapShader ));
+	// composer.addPass(new ShaderPass(BrightnessContrastShader));
+	composer.addPass(new ShaderPass(GradientMapShader));
+	composer.addPass(new ShaderPass(GammaCorrectionShader));	
 	
 	setupLight();
 	setupSkyBox();
@@ -351,8 +357,38 @@ function main(){
 			let model = models[i].scene || models[i].scenes[0];	
 			let clips = models[i].animations || [];
 			model.scale.set(1,1,1);
-			model.position.set(0,0,0);
-			scene.add( model );				
+			// if(model.children[0].children.length>0){
+				// model.children[0].children.forEach(function(child){
+					// if(child.material.map != null){
+						// console.log("Image")
+					// }else{
+						// // child.material.roughness = 1;
+						// // let newMat = new THREE.MeshBasicMaterial();
+						// // newMat.color = child.material.color;
+						// // newMat.name = child.material.name;
+						// // child.material = newMat;
+					// }
+					// // console.log(child.material.name + " " + child.material.color.getHexString() );
+					// // child.material.color = child.material.color.convertSRGBToLinear();
+					// // child.material.needUpdates = true;
+				// });
+			// }else{
+				// if(model.children[0].material.map != null){
+					// console.log("Image")
+				// }else{
+					// // model.children[0].material.roughness = 1;		
+					// // let newMat = new THREE.MeshBasicMaterial();
+					// // newMat.color = model.children[0].material.color;
+					// // newMat.name = model.children[0].name;
+					// // model.children[0].material = newMat;
+				// }
+				// // console.log(model.children[0].material.name + " " + model.children[0].material.color.getHexString() );
+				// // model.children[0].material.color = model.children[0].material.color.convertSRGBToLinear();
+				// // model.children[0].material.needUpdates = true;
+			// }
+						
+			scene.add( model );		
+
 			if(clips.length != 0){
 				mixers.push(new THREE.AnimationMixer(model));
 				let action = mixers[mixers.length-1].clipAction(clips[0]);
