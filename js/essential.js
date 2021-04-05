@@ -3,9 +3,8 @@ export function setupRenderer(renderer,canvas,paramsTone){
 	renderer = new THREE.WebGLRenderer({antialias: true, preserveDrawingBuffer: true,canvas});
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.outputEncoding = THREE.sRGBEncoding;
-	// renderer.toneMapping = THREE.ACESFilmicToneMapping;
-	// renderer.toneMappingExposure = 1;
-	console.log(renderer.toneMappingExposure);
+	// renderer.toneMapping = THREE.ReinhardToneMapping
+	// renderer.toneMappingExposure = 2;
 	// document.getElementById("canvasBlend").appendChild( renderer.domElement );	
 	document.body.appendChild( renderer.domElement );	
 	return renderer;
