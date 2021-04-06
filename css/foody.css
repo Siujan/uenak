@@ -672,17 +672,24 @@ html, body{
 	color:#ffffff;
 	width:132px;
 	height:42px;
+	box-shadow:0px 5px #CC6A7E;
 	outline:none;
 	font-size:1rem;
 	border-radius:20px;
 	border:none;
 	align-self:center;
 	animation:logoOpening .5s;
-	transition:border-radius .5s;
+	transition:all .3s;
 }
 
 #startButton:hover{
-	border-radius:50%;
+	transform:translateY(2.5px);
+	box-shadow:0px 2.5px #CC6A7E;
+}
+
+#startButton:active{
+	transform:translateY(5px);
+	box-shadow:0px 0px #CC6A7E;	
 }
 
 .text-white{

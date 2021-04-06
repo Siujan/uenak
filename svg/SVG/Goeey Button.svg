@@ -1,0 +1,10 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="264" height="85.389" viewBox="0 0 264 85.389">
+	<defs>
+	<style>.cls-1{fill:#ff7bac;}</style>
+	</defs><title>Goeey Button</title>
+	<path id="buttonGooey" class="cls-1" d="M222,85.0866c-6.4934,0-8.3677.68-31.1276,0H42A42.9031,42.9031,0,0,1,12.3015,72.7851,41.8686,41.8686,0,0,1,0,43.0866H0a42,42,0,0,1,42-42H75.78c20.481,0,35.1452,1.8577,58.2081,1.8345,25.8027-.0259,38.92-.0391,57.5651-1.8345,8.4777-.8163,17.78-1.97,30.4468,0,9.599,1.4932,20.7126,3.3156,29.6985,12.3015A41.8685,41.8685,0,0,1,264,43.0865h0A42,42,0,0,1,222,85.0866Z"/>
+	<script>
+		let path = document.getElementById("buttonGooey");
+		console.log(path.getAttribute('d').split(','));
+	</script>	
+</svg>
