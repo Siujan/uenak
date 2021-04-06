@@ -4,6 +4,7 @@
 		<meta charset="utf-8">
 		<title>Uenakkkk, Discover Indonesian Street Food here</title>
 		<link rel="icon" href="images/icons/martabak.png">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="css/foody.css">
@@ -63,10 +64,13 @@
 			</div>				
 			<div id="bottom">
 				<div id="bottom-left">
-					<img src="svg/mute.svg" onclick="musicToggle()" id="music-icon" class="bottom-icon" alt="sound icon">
+					<!-- <i class="fas fa-volume-up"></i> -->
+					<i id="music-icon" class="fas fa-volume-mute bottom-icon text-white" onclick="musicToggle()"></i>
+					<!-- <img src="svg/mute.svg" onclick="musicToggle()" id="music-icon" class="bottom-icon" alt="sound icon"> -->
 				</div>
 				<div id="bottom-right">
-					<img src="svg/About.svg" id="about-icon" class="bottom-icon" alt="about icon">
+					<i id="about-icon" class="fas fa-exclamation-circle bottom-icon text-white"></i>
+					<!-- <img src="svg/About.svg" id="about-icon" class="bottom-icon" alt="about icon"> -->
 				</div>
 			</div>	
 		</div>
@@ -150,15 +154,17 @@
 			}
 			
 			let musicIcon = document.getElementById("music-icon");
-			let muteSvg = "svg/mute.svg";
-			let musicOnSvg = "svg/sound.svg";
+			let muteIcon = "fa-volume-mute";
+			let musicOnIcon = "fa-volume-up";
 			function musicToggle(){
 				if(musicToggled){
-					musicIcon.src = muteSvg
+					musicIcon.classList.remove(musicOnIcon);
+					musicIcon.classList.add(muteIcon);
 					music.pause();
 					musicToggled = false;
 				}else{
-					musicIcon.src = musicOnSvg;
+					musicIcon.classList.remove(muteIcon);
+					musicIcon.classList.add(musicOnIcon);
 					music.play();
 					musicToggled = true;
 				}
