@@ -5,7 +5,7 @@
 :root {
 	--br-blobby: 50%;
 	--descPanel-blobby: 50%;
-	--start-blobby: 10px;
+	--action-blobby:50%;
 }
 
 html, body{
@@ -252,11 +252,12 @@ html, body{
 	display:flex;
 	gap: 15px;
 	margin-top:auto;
+	overflow:visible;
 }
 
 .actionButton{
 	background-color:#ff557e;
-	border-radius:var(--descPanel-blobby);
+	border-radius:var(--action-blobby);
 	border-style: none;
 	height: 60px;
 	width: 60px;
@@ -264,12 +265,11 @@ html, body{
 	outline:none;
 	margin-bottom:5px;
 	animation: actionButtonOpen .5s 1s both;
-	transition: background-color .3s;
+	transition: all 1s linear;
 }
 
 .actionButton:hover{
 	cursor:pointer;
-	background-color:#ffce9f;
 }
 
 /* #learn-more-icon{ */

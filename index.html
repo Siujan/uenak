@@ -48,16 +48,16 @@
 					</div>
 					<div id="actionDesc">
 						<div class="buttonBox">
-							<button id="learnMoreButton" class="actionButton" >
+							<button id="learnMoreButton" class="actionButton" onmouseout="onActionButtonMouseOut()" onmouseover="onActionButtonMouseOver(this)">
 								<img src="svg/search.svg" id="learn-more-icon" alt="learn-more">
 							</button>	
-							<p id="learnMoreP" >LEARN<br>MORE</p>
+							<p id="learnMoreP">LEARN<br>MORE</p>
 						</div>
 						<div class="buttonBox">
-							<button id="cutleryButton" class="actionButton">
+							<button id="cutleryButton" class="actionButton" onmouseout="onActionButtonMouseOut()" onmouseover="onActionButtonMouseOver(this)">
 								<img src="svg/cutlery.svg" id="cutlery-icon" alt="cutlery">
 							</button>	
-							<p id="cutleryP">NEAR<br>ME</p>
+							<p id="cutleryP" >NEAR<br>ME</p>
 						</div>
 					</div>
 				</div>
@@ -151,6 +151,32 @@
 			function actionButtonHoverOut(elem){
 				clearInterval(hoverInterval);
 				elem.style.setProperty('--descPanel-blobby','50%');
+			}
+			
+			let actionButton = document.getElementsByClassName('actionButton');
+			actButtonHover = "";
+			setInterval(setBorderRadiusAction,1000);
+			function setBorderRadiusAction(){
+				if(actButtonHover){
+					for(let i = 0;i<actionButton.length;i++){
+						if(actionButton[i].id == actButtonHover){
+							actionButton[i].style.setProperty('--action-blobby',getRandomBorderRadiusValue());				
+						}
+					}				
+				}
+			}			
+			
+			function onActionButtonMouseOver(id){
+				actButtonHover = id.id;
+			}
+			
+			function onActionButtonMouseOut(){
+				for(let i = 0;i<actionButton.length;i++){
+					if(actionButton[i].id == actButtonHover){
+						actionButton[i].style.setProperty('--action-blobby','50%');				
+					}
+				}	
+				actButtonHover = "";				
 			}
 			
 			let musicIcon = document.getElementById("music-icon");
