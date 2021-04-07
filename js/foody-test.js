@@ -326,8 +326,18 @@ let logoList = ['logo-u','logo-e','logo-n','logo-a','logo-k'];
 function panelShowAnimation(){
 	descriptionPanel.style.display = "flex";
 	descriptionPanel.classList.remove("descPanScaleDown");
+	learnMoreButton.classList.add("learnMoreButton");
+	setTimeout(function(){
+		learnMoreButton.classList.remove("learnMoreButton");
+	learnMoreButton.classList.add("actionButtonHover");},1750)
+	cutleryButton.classList.add("cutleryButton");
+	setTimeout(function(){
+		cutleryButton.classList.remove("cutleryButton");
+	cutleryButton.classList.add("actionButtonHover");},1750)
+	
 	overlayPanel.classList.add('fadein');
 	overlayPanel.classList.remove('fadeout');	
+	
 	// backgroundText.style.display = "block";
 }
 
@@ -338,7 +348,8 @@ function panelGoneAnimation(){
 							disableSearchButtonHover();}, 500);
 	overlayPanel.classList.remove('fadein');
 	overlayPanel.classList.add('fadeout');	
-	
+	setTimeout(function(){learnMoreButton.classList.remove("actionButtonHover");},500)
+	setTimeout(function(){cutleryButton.classList.remove("actionButtonHover");},500)
 }
 
 function disableSearchButtonHover(){

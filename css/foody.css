@@ -258,18 +258,28 @@ html, body{
 .actionButton{
 	background-color:#ff557e;
 	border-radius:var(--action-blobby);
+	box-shadow:0px 5px #CC6A7E;
 	border-style: none;
 	height: 60px;
 	width: 60px;
 	padding: 1.5em;
 	outline:none;
 	margin-bottom:5px;
-	animation: actionButtonOpen .5s 1s both;
-	transition: all 1s linear;
 }
 
-.actionButton:hover{
+.actionButtonHover{
+	transition: all .3s linear;
+}
+
+.actionButtonHover:hover{
 	cursor:pointer;
+	transform:translateY(2.5px);
+	box-shadow:0px 2.5px #CC6A7E;
+}
+
+.actionButtonHover:active{
+	transform:translateY(5px);
+	box-shadow:0px 0px #CC6A7E;	
 }
 
 /* #learn-more-icon{ */
@@ -280,11 +290,11 @@ html, body{
 	/* transform: translateY(-25px); */
 /* } */
 
-#learnMoreButton{
+.learnMoreButton{
 	animation: actionButtonOpen .5s 1s both;
 }
 
-#cutleryButton{
+.cutleryButton{
 	animation: actionButtonOpen .5s 1.25s both;
 }
 
