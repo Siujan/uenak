@@ -320,10 +320,12 @@ html, body{
 }
 
 #learnMoreP{
+	margin-bottom:.5rem;
 	animation:actionParaphOpen .5s 1.5s both;
 }
 
 #cutleryP{
+	margin-bottom:.5rem;
 	animation:actionParaphOpen .5s 1.75s both;
 }
 
