@@ -38,6 +38,7 @@ html, body{
 #top #top-right{
 	position:relative;
 	overflow:hidden;
+	box-shadow: inset 5px 5px 10px #CC4363;
 	display:inline-flex;
 	gap:40px;
 	background-color:#ff557e;
@@ -45,6 +46,17 @@ html, body{
 	border-radius: 25px;
 }
 
+#knobs-depth{
+	position:absolute;
+	transform:translate(-20px,-3px);
+	content:"";
+	width:100%;
+	height:100%;
+	border-radius:25px;
+	/* box-sizing: border-box; */
+	box-shadow: inset 0px 0px 10px #CC4363;
+	/* border: solid 4px #CC4363;		 */
+}
 
 #top #top-right h1{
 	margin-right:0px;
@@ -206,10 +218,8 @@ html, body{
 }
 
 #descPanelLeft img{
-	max-width:75%;
-	max-height:75%;
-	width:auto;
-	height:auto;
+	width:75%;
+	/* height:75%; */
 	align-self:center;
 	animation: badge-opening .5s;
 }
@@ -585,8 +595,9 @@ html, body{
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
-	background-color:white;
+	background-color:rgba(255,255,255,1);
 	z-index:15;
+	transition: all .5s;
 }
 
 #logo{
@@ -607,7 +618,7 @@ html, body{
 		background-color: rgba(0,0,0,1);;
 	}
 	100%{
-		background-color: rgba(0,0,0,0);
+		background-color: rgba(0,0,0,0.5);
 	}
 }
 
@@ -624,7 +635,7 @@ html, body{
 	width:50%;
 	align-self:center;
 	border-style:solid;
-	border-color:#ffce9f;
+	border-color:#ff849c;
 }
 
 #loading{

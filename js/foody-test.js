@@ -375,7 +375,7 @@ function closeCurtain(){
 	for(let i =0;i<logoList.length;i++){
 		document.getElementById(logoList[i]).style.animation = "logoClose .5s ." + (4 + i) +"s forwards";
 	}	
-	setTimeout(function(){ document.getElementById("startButton").style.animation = "logoClose .5s forwards";}, 1000);
+	setTimeout(function(){ document.getElementById("startButton").style.animation = "logoClose .5s forwards";loadingScreen.style.backgroundColor = "rgba(255,255,255,0)";}, 1000);
 	setTimeout(function(){ loadingScreen.style.display = "none"; musicToggle();}, 1500);		
 }
 
@@ -437,7 +437,7 @@ function main(){
 				action.play();				
 			}				
 		}				
-		loadingScreen.style.animation = "fadeOutBackground .5s forwards";
+		loadingScreen.style.backgroundColor = "rgba(255,255,255,0.5)";
 		document.getElementById("loading-border").style.animation = "fadeOutOp .5s .5s forwards";
 		setTimeout(()=>{document.getElementById("loading-border").style.display = "none";document.getElementById("startButton").style.display = "block"},1500);
 
